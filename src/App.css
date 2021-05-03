@@ -1,0 +1,55 @@
+@import url('https://use.typekit.net/lpx1dav.css');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+:root {
+    --font-35-900: normal normal 900 35px/48px Muli;
+    --font-30-normal: normal normal normal 30px/38px Muli;
+    --font-16-normal: normal normal normal 16px/20px Muli;
+    --font-16-bold: normal normal bold 16px/20px Muli;
+    --font-18-normal: normal normal normal 18px/22px Lato;
+    --font-14-normal: normal normal normal 14px/20px Muli;
+    --font-link: normal normal bold 16px/20px Muli;
+
+    --font-family-1: Muli;
+
+    --p-color1: #707070;
+    --p-color2: #000000;
+    --p-color3: #FFFFFF;
+    --p-color4: #A9C5BA;
+
+    --links-text-decoration: underline;
+
+    --letter-spacing: 0px;
+
+
+    /* CONTENT FORM */
+
+    --content-form-background: #FFFFFF 0% 0% no-repeat padding-box;
+
+    /* BUTTON SIGN UP */
+
+    --button-sign-up-background: #707070 0% 0% no-repeat padding-box;
+    --button-sign-up-border-radius: 100px;
+    --button-sign-up-opacity: 1;
+
+    --button-sign-up-letter-spacing: 0px;
+    --button-sign-up-color: #FFFFFF;
+    --button-sign-up-opacity: 1;
+
+
+    /* BUTTON GOOGLE */
+
+    --button-google-box-shadow: 0px 3px 6px #00000029;
+    --button-google-border-radius: 100px;
+    --button-google-opacity: 1;
+
+  }
+  
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family-1);
+}

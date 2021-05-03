@@ -1,0 +1,250 @@
+:root {
+    --font-35-900: normal normal 900 35px/48px Muli;
+    --font-30-normal: normal normal normal 30px/38px Muli;
+    --font-20-normal: normal normal normal 20px/25px Muli;
+    --font-16-normal: normal normal normal 16px/20px Muli;
+    --font-16-bold: normal normal bold 16px/20px Muli;
+    --font-18-normal: normal normal normal 18px/22px Lato;
+    --font-14-normal: normal normal normal 14px/20px Muli;
+    --font-link: normal normal bold 16px/20px Muli;
+
+    --font-family-1: Muli;
+
+    --color1: #707070;
+    --color2: #000000;
+    --color3: #FFFFFF;
+    --color4: #A9C5BA;
+
+
+    --letter-spacing: 0px;
+
+
+    /* CONTENT FORM */
+
+    --content-form-background: #FFFFFF 0% 0% no-repeat padding-box;
+
+    /* BUTTON SIGN UP */
+
+    --button-sign-up-background: #707070 0% 0% no-repeat padding-box;
+    --button-sign-up-border-radius: 100px;
+    --button-sign-up-opacity: 1;
+
+    --button-sign-up-letter-spacing: 0px;
+    --button-sign-up-color: #FFFFFF;
+    --button-sign-up-opacity: 1;
+
+
+    /* BUTTON GOOGLE */
+
+    --button-google-box-shadow: 0px 3px 6px #00000029;
+    --button-google-border-radius: 100px;
+    --button-google-opacity: 1;
+
+  }
+
+
+.register-container {
+    height: 100vh;
+    background: var(--content-form-background);
+
+    display: flex;
+    flex-direction: row;
+}
+
+.content-carousel {
+    background: var(--color4);
+    width: 50%;
+}
+
+.content-carousel .caurosel{
+    margin: 112px auto auto auto;
+}
+
+.content-carousel .caurosel div{
+    display: flex;
+}
+
+
+.content-carousel .caurosel .div img{
+    margin: auto;
+}
+
+.section{
+    margin: 40px auto auto auto;
+    width: 553px;
+    text-align: center;
+}
+
+.section .h3{
+    font: var(--font-30-normal);
+    color: var(--color3);
+}
+
+.section .p{
+    color: var(--color3);
+    font: var(--font-20-normal);
+}
+
+.slick-list .slick-track div div .div {
+    height: 770px;
+}
+
+.content-carousel .ant-carousel ul li{
+    margin: 0 10px;
+    width: 5px;
+}
+
+.content-carousel .ant-carousel ul li button{
+    width: 10px;
+    height: 11px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 50px;
+}
+
+.content-carousel .ant-carousel ul .slick-active button{
+    width: 26px;
+    height: 11px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 50px;
+}
+
+.content-signup{
+    width: 50%;
+}
+
+.content-signup h1 {
+    margin: 120px 15% auto auto;
+    text-align: right;
+    font: var(--font-35-900);
+}
+
+
+.content-signup .forms{
+    margin: 70px auto auto auto;
+    max-width: 450px;
+}
+
+.content-signup .forms section h2 {
+    margin-top: 50px;
+    text-align: center;
+    font: var(--font-30-normal);
+    color: var(--color1);
+}
+
+.content-signup .forms form{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-signup .forms form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-signup .forms form input{
+    margin-top: 10px;
+    font: var(--font-14-normal);
+    border: 0;
+    border-bottom: 1px solid;
+    padding: 0px 0px 8px 20px;
+}
+
+.content-signup .forms form button{
+    margin: 40px auto auto auto;
+    width: 175px;
+    height: 45px;
+    border: 0;
+    font: normal normal bold 16px/20px Muli;
+    color: var(--color3);
+    background: var(--button-sign-up-background);
+    border-radius: var(--button-sign-up-border-radius);
+    opacity: var(--button-google-opacity);
+}
+
+.content-signup .forms form button:hover{
+    cursor: pointer;
+    box-shadow: var(--button-google-box-shadow);
+}
+
+.content-signup .forms div{
+    margin: auto;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-signup .forms div .hr{
+    height: 1px;
+    width: 45%;
+}
+
+.content-signup .forms div p{
+    margin: 10px;
+    font: var(--font-14-normal);
+    color: var(--color1);
+}
+
+.content-signup .forms div p{
+    margin: 10px;
+    font: var(--font-14-normal);
+    color: var(--color1);
+}
+
+.content-signup .forms .btnGoogle {
+    width: 263px !important;
+    height: 45px !important;
+    margin: 30px auto !important;
+    
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 0 !important;
+    border-radius: var(--button-sign-up-border-radius) !important;
+    box-shadow: 0px 3px 6px #00000029 !important;
+    opacity: var(--button-google-opacity) !important;
+    background: var(--color3) !important;
+
+    font: normal normal normal 18px/22px Lato !important;
+    color: var(--color2) !important;
+}
+
+.content-signup .forms .btnGoogle:hover {
+    cursor: pointer;
+}
+
+.content-signup .forms .btnGoogle div {
+    margin: auto 10px;
+}
+
+.content-signup .forms .btnGoogle p {
+    margin: auto 10px;
+    font: var(--font-18-normal);
+    color: var(--color2);
+}
+
+.content-signup .forms p {
+    margin: 40px auto;
+    text-align: center;
+    font: var(--font-14-normal);
+    color: var(--color1);
+}
+
+.content-signup .forms .p u{
+    font: var(--font-16-normal);
+    color: var(--color4);
+}
+
+.content-signup .forms p a{
+    color: var(--color1);
+    text-decoration: none;
+}
+
+.content-signup .forms p a u{
+    font: var(--font-16-normal);
+    color: var(--color4);
+}
