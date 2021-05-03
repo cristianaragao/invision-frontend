@@ -189,7 +189,7 @@ export default function SigIn(){
 
         }
         catch{
-            openSnackbar({ msg: 'Server error.', tp: 'error' });
+            openSnackbar({ msg: 'Server off.', tp: 'error' });
         }
 
     }
