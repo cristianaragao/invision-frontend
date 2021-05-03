@@ -193,7 +193,7 @@ const SigIn = ( props, { dispatch }) => {
         }
         catch {
 
-            openSnackbar({ msg: 'Error on server.', tp: 'error'});
+            openSnackbar({ msg: 'Server off.', tp: 'error'});
 
         }
 	
