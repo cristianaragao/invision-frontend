@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="/frontend/src/assets/Data@2x.png" alt="Invision" title="Invision" width="300">
+  <img src="/src/assets/Data@2x.png" alt="Invision" title="Invision" width="300">
 </h1>
 
 # Invison
