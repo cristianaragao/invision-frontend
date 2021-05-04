@@ -204,6 +204,13 @@ const SigIn = ( props ) => {
         
     }
 
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     return(
         <div className="signin-container" style={style.registerContainer}>
 
@@ -212,7 +219,7 @@ const SigIn = ( props ) => {
 
                     {
                         slides.map((item, index) => (
-                            <div key={index} className="div">
+                            <div key={getRandomInt(0, 100)} className="div">
                                 <img
                                     width={window.innerWidth <= tamMinMobile ? '300px' : {}}
                                     src={item.src}

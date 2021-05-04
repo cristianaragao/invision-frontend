@@ -86,6 +86,36 @@
     color: var(--color1);
 }
 
+.content-carousel .caurosel{
+    margin: 112px auto auto auto;
+}
+
+.content-carousel .caurosel div{
+    display: flex;
+}
+
+.content-carousel .caurosel .div img{
+    margin: auto;
+}
+
+.section{
+    margin: 40px auto auto auto;
+    width: 553px;
+    text-align: center;
+}
+
+.section .h3{
+    margin-top: 20px;
+    font: var(--font-30-normal);
+    color: var(--color3);
+}
+
+.section .p{
+    margin-top: 20px;
+    color: var(--color3);
+    font: var(--font-20-normal);
+}
+
 .content-signin .forms form{
     margin-top: 50px;
     display: flex;

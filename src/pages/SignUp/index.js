@@ -27,6 +27,9 @@ import { openSnackbar } from './../../common/Notifier';
 /* LOADING */
 import { showLoading } from './../../common/Loading';
 
+const tamMinDesktop = 1300;
+const tamMinMobile = 500;
+
 export default function SigIn(){
 
     const [name, setName] = useState('');
@@ -66,12 +69,12 @@ export default function SigIn(){
         },
     ];
 
-    const [style, setStyle] = useState(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
+    const [style, setStyle] = useState(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
 
     /* FUNCTIONS */
 
     useEffect(() => {
-        setStyle(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
+        setStyle(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
     }, []);
 
     async function handleRegister(e){
@@ -217,6 +220,13 @@ export default function SigIn(){
 
     }
 
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     return(
         <div className="register-container" style={style.registerContainer}>
 
@@ -225,14 +235,14 @@ export default function SigIn(){
 
                     {
                         slides.map((item) => (
-                            <div className="div">
+                            <div key={getRandomInt(0,100)} className="div">
                                 <img
-                                    width={window.innerWidth <= 450 ? '350px' : {}}
+                                    width={window.innerWidth <= tamMinMobile ? '300px' : {}}
                                     src={item.src}
                                     alt={item.alt}
                                 />
 
-                                <section className="section" style={ window.innerWidth <= 411 ? { width: '350px'} : { width: '100%'} }>
+                                <section className="section" style={style.section}>
 
                                     <h3 className="h3">{item.h3}</h3>
 

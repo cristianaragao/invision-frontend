@@ -2,31 +2,28 @@ import React from 'react';
 import userEvent from '@testing-library/user-event'
 import {render, screen} from '@testing-library/react';
 
-import SignUp from '../pages/SignUp/index';
+import SignUp from './../pages/SignUp/index';
 
-/* const user = {
-    name: 'Cristian Aragão',
-    email: 'user@email.com',
-    password: '123456',
-};
+test('Rendering Name field correctly.', () => {
+    const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)
+    
+    expect(queryByLabelText("Full Name")).toBeTruthy()
+    expect(queryAllByPlaceholderText("Cristian Aragão")).toBeTruthy()
 
-test('Fill in Full Name field.', () => {
-    render(<SignUp />)
-    const inputFullName = screen.getByPlaceholderText("Full Name")
-    userEvent.type(inputFullName, user.name)
-    expect(inputFullName.value).toEqual(user.name)
 })
 
-test('Fill in Password field.', () => {
-    render(<SignUp />)
-    const inputEmail = screen.getByPlaceholderText("Users name or Email")
-    userEvent.type(inputEmail, user.email)
-    expect(inputEmail.value).toEqual(user.email)
+test('Rendering Email field correctly.', () => {
+    const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)
+    
+    expect(queryByLabelText("Users name or Email")).toBeTruthy()
+    expect(queryAllByPlaceholderText("Ex: username@gmail.com")).toBeTruthy()
+
 })
 
-test('Fill in Password field.', () => {
-    render(<SignUp />)
-    const inputPassword = screen.getByPlaceholderText("Password")
-    userEvent.type(inputPassword, user.password)
-    expect(inputPassword.value).toEqual(user.password)
-}) */
+test('Rendering Password field correctly.', () => {
+    const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)
+    
+    expect(queryByLabelText("Password")).toBeTruthy()
+    expect(queryAllByPlaceholderText("Ex: username123")).toBeTruthy()
+
+})
