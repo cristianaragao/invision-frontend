@@ -39,10 +39,19 @@
     --button-google-border-radius: 100px;
     --button-google-opacity: 1;
 
-  }
+}
 
+@media only screen and (max-width: 500px) {
+    .content-carousel .ant-carousel ul {
+        margin-top: 40vh;
+    }
 
-.register-container {
+    .ant-carousel {
+        height: 90vh;
+    }
+}
+
+.signin-container {
     height: 100vh;
     background: var(--content-form-background);
 
@@ -64,7 +73,6 @@
     text-align: right;
     font: var(--font-35-900);
 }
-
 
 .content-signin .forms{
     margin: 70px auto auto auto;

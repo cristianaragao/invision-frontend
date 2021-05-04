@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { openSnackbar } from './../../common/Notifier';
 
 /* MATERIAL UI/CORE/ */
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -16,14 +15,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 /* Authenticator */
 import { AuthService } from './../../routes/AuthService';
 
-const useStyles = makeStyles(() => ({
+import './style.css';
+
+const useStyles = {
 
     root: {
       flexGrow: '1',
     },
 
     header: {
-        backgroundColor: '#A9C5BA',
         color: '#000'
     },
 
@@ -49,10 +49,10 @@ const useStyles = makeStyles(() => ({
       color: '#707070',
     }
 
-}));
+};
 
 const Home = (propers) => {
-    const classes = useStyles();
+    const classes = useStyles;
 
     const history = useHistory();
 
@@ -70,14 +70,14 @@ const Home = (propers) => {
 
     return (
         <div className={classes.root}>
-            <AppBar className={classes.header} position="static">
+            <AppBar style={classes.header} position="static">
                 <Toolbar>
 
-                  <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                  <IconButton edge="start" style={classes.menuButton} color="inherit" aria-label="menu">
                       <MenuIcon />
                   </IconButton>
 
-                  <Typography variant="h6" className={classes.title}>
+                  <Typography variant="h6" style={classes.title}>
                       {user.name}
                   </Typography>
 
@@ -87,7 +87,7 @@ const Home = (propers) => {
 
             </AppBar>
 
-            <h1 className={window.innerWidth > 1300 ? classes.h1 : classes.h1_1}><b>Logged in as {user.email}</b></h1>
+            <h1 style={window.innerWidth > 1300 ? classes.h1 : classes.h1_1}><b>Logged in as {user.email}</b></h1>
 
         </div>
     );

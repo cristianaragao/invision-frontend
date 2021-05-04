@@ -2,9 +2,9 @@ import React from 'react';
 import userEvent from '@testing-library/user-event'
 import {render, screen} from '@testing-library/react';
 
-import SignUp from './../pages/SignUp/index';
+import SignUp from '../pages/SignUp/index';
 
-const user = {
+/* const user = {
     name: 'Cristian Aragão',
     email: 'user@email.com',
     password: '123456',
@@ -29,4 +29,4 @@ test('Fill in Password field.', () => {
     const inputPassword = screen.getByPlaceholderText("Password")
     userEvent.type(inputPassword, user.password)
     expect(inputPassword.value).toEqual(user.password)
-})
+}) */

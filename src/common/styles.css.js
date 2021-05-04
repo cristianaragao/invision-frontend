@@ -32,7 +32,6 @@ export const style = {
 
 export const stylesDesktop = {
     registerContainer: {
-        height: '100vh',
         background: contentFormBackground,
         display: 'flex',
         flexDirection: 'row',
@@ -58,9 +57,37 @@ export const stylesMobile = {
     contentCarousel: {
         background: contentCarouselBackground,
         width: '100%',
+        height: '90vh',
+    },
+
+    slidesCarousel: {
+        margin: '40px auto auto auto',
+    },
+
+    section: {
+        width: '90%',
+    },
+
+    div: {
+        marginTop: '10px',
+    },
+
+    h1: {
+        margin: '40px 15% auto auto'
+    },
+
+    h3: {
+        margin: 'auto 15px',
+    },
+
+    p: {
+        marginTop: '20px',
+        margin: 'auto 15px',
     },
     
     content: {
         width: '100%',
+        margin: 'auto auto',
+        padding: '0 15px 0 15px',
     }
 };

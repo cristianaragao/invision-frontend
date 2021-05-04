@@ -9,9 +9,10 @@ export function Input({ error, id, label, placeholder, value, onChange, type }){
     return(
         <Fragment>
 
-            <label style={style.labelField}>{label}</label>
+            <label aria-label={label} style={style.labelField}>{label}</label>
 
             <input
+                aria-placeholder={placeholder}
                 style={error === partName[1] ? style.error : style.normal }
                 id={id}
                 type={type}

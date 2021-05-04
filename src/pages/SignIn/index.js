@@ -33,6 +33,9 @@ import { openSnackbar } from './../../common/Notifier';
 /* LOADING */
 import { showLoading } from './../../common/Loading';
 
+const tamMinDesktop = 1300;
+const tamMinMobile = 500;
+
 
 const SigIn = ( props ) => {
 
@@ -47,7 +50,8 @@ const SigIn = ( props ) => {
     const history = useHistory();
 
     useEffect(() => {
-        setStyle(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
+        setStyle(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
+        document.getElementsByClassName("slick-dots slick-dots-bottom").style = stylesMobile.listButtonsSlide;
     }, []);
 
     const slides = [
@@ -201,25 +205,25 @@ const SigIn = ( props ) => {
     }
 
     return(
-        <div className="register-container" style={style.registerContainer}>
+        <div className="signin-container" style={style.registerContainer}>
 
             <div className="content-carousel" style={style.contentCarousel}>
-                <Carousel className="caurosel" autoplay>
+                <Carousel className="caurosel" style={style.slidesCarousel} autoplay>
 
                     {
                         slides.map((item, index) => (
                             <div key={index} className="div">
                                 <img
-                                    width={window.innerWidth <= 450 ? '350px' : {}}
+                                    width={window.innerWidth <= tamMinMobile ? '300px' : {}}
                                     src={item.src}
                                     alt={item.alt}
                                 />
 
-                                <section className="section" style={ window.innerWidth <= 411 ? { width: '350px'} : { width: '100%'} }>
+                                <section className="section" style={style.section}>
 
-                                    <h3 className="h3">{item.h3}</h3>
+                                    <h3 className="h3" style={style.p}>{item.h3}</h3>
 
-                                    <p className="p">{item.p}</p>
+                                    <p className="p" style={style.p}>{item.p}</p>
 
                                 </section>
                                 
@@ -231,7 +235,7 @@ const SigIn = ( props ) => {
 
             <div className="content-signin" style={style.content}>
                         
-                <h1>Invision</h1>
+                <h1 style={style.h1}>Invision</h1>
 
                 <div className="forms">
                     <section>
@@ -244,9 +248,9 @@ const SigIn = ( props ) => {
 
                         <Input
                             id="input-email"
+                            label="Users name or Email"
                             error={errorInput}
                             type="email"
-                            label="Users name or Email"
                             placeholder="Ex: username@gmail.com"
                             value={email}
                             onChange={(e) => { setEmail(e.target.value); setErrorInput(''); }}
@@ -254,9 +258,9 @@ const SigIn = ( props ) => {
 
                         <Input
                             id="input-password"
+                            label="Password"
                             error={errorInput}
                             type="password"
-                            label="Password"
                             placeholder="Ex: username123"
                             value={password}
                             onChange={e => { setPassword(e.target.value); setErrorInput(''); }}
