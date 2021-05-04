@@ -42,13 +42,6 @@
 
   }
 
-@media only screen and (max-width: 500px) {
-    .content-carousel .ant-carousel ul {
-        margin-bottom:  calc(100vh - 100%);
-    }
-
-}
-
 .register-container {
     height: 100vh;
     background: var(--content-form-background);

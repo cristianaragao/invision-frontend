@@ -42,10 +42,10 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .content-carousel .ant-carousel ul {
-        margin-bottom: 40vh;
-    }
-s
+    /* .content-carousel .ant-carousel ul {
+        display: none;
+    } */
+
     .ant-carousel {
         height: 100vh;
     }
