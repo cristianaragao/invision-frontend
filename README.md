@@ -6,7 +6,7 @@
 
 Project created with ReactJS + NodeJS
 
-To view the project in the browser visit: [https://cristianaragao.github.io/invision-frontend/](https://cristianaragao.github.io/invision-frontend/)
+<!-- To view the project in the browser visit: [https://cristianaragao.github.io/invision-frontend/](https://cristianaragao.github.io/invision-frontend/) -->
 
 <hr/>
 
