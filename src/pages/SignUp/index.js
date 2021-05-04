@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /* MATERIAL UI/CORE/ */
 import Divider from '@material-ui/core/Divider';
@@ -37,7 +37,6 @@ export default function SigIn(){
     const [password, setPassword] = useState('');
     const [errorInput, setErrorInput] = useState('');
 
-    const history = useHistory();
 
     const slides = [
         {   
@@ -156,7 +155,7 @@ export default function SigIn(){
 
                 openSnackbar({ msg: 'Registration completed!', tp: 'success' });
 
-                history.replace('/signin');
+                return <Link to="/signin"/>;
             }
             else{
 
@@ -200,7 +199,7 @@ export default function SigIn(){
 
                 openSnackbar({ msg: 'Registration completed!', tp: 'success' });
 
-                history.replace('/signin');
+                return <Link to="/signin"/>;
 
             }
             else{         
@@ -322,9 +321,9 @@ export default function SigIn(){
                         children={<p>Sign up with Google</p>}
                     />
 
-                    <p className="p">By signing up, you agree to Invision <u>Terms of Conditions</u> and <u>Privacy Policy</u></p>
+                    <p className="p">By signing up, you agree to Invision <Link to="/signup"><u>Terms of Conditions</u></Link> and <Link to="/signup"><u>Privacy Policy</u></Link></p>
 
-                    <p><a href="/signin">Already on <b>Invision</b>? <u>Log in</u></a></p>
+                    <p><Link to="/signin">Already on <b>Invision</b>? <u>Log in</u></Link></p>
                 </div>
             </div>
         </div>

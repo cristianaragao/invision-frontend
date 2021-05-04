@@ -237,7 +237,7 @@
     color: var(--color1);
 }
 
-.content-signup .forms .p u{
+u{
     font: var(--font-16-normal);
     color: var(--color4);
 }
@@ -247,7 +247,7 @@
     text-decoration: none;
 }
 
-.content-signup .forms p a u{
+/* .content-signup .forms p a u{
     font: var(--font-16-normal);
     color: var(--color4);
-}
+} */

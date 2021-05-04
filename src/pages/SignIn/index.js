@@ -1,6 +1,6 @@
 /* REACT AND LIBRARIES */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 /* BOOTSTRAP */
 import 'antd/dist/antd.css';
@@ -40,6 +40,8 @@ const tamMinMobile = 500;
 const SigIn = ( props ) => {
 
     /* CONSTAINTS */
+
+    console.log('props', props);
 
     const [style, setStyle] = useState(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
 
@@ -141,7 +143,7 @@ const SigIn = ( props ) => {
 
                 AuthService.signIn(response.data.user);
 
-                history.replace("/home");
+                return <Link to="/home"/>;
 
             }
             else{
@@ -273,7 +275,7 @@ const SigIn = ( props ) => {
                             onChange={e => { setPassword(e.target.value); setErrorInput(''); }}
                         />
 
-                        <a href="/signin">Forgot password?</a>
+                        <Link to="/signin">Forgot password?</Link>
 
                         <button className="button" type="submit">Sign In</button>
 
@@ -298,7 +300,7 @@ const SigIn = ( props ) => {
                         children={<p>Sign in with Google</p>}
                     />
 
-                    <p><a href="/signup">New <b>Invision</b>? <u>Create Account</u></a></p>
+                    <p><Link to="/signup">New <b>Invision</b>? <u>Create Account</u></Link></p>
                 </div>
             </div>
         </div>

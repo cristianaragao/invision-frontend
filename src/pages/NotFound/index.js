@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
@@ -47,15 +47,13 @@ const style = {
     }
 }
 
-export default function Home() {
-
-    const history = useHistory();
+export default function NotFound() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
 
-            if(AuthService.logged) history.replace('/home');
-            else history.replace('/signin');
+            if(AuthService.logged) <Link to="/home"/>;
+            else <Link to="/signin"/>;
             
         }, 2000);
         return () => clearTimeout(timer);

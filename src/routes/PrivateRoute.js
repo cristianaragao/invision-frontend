@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
                 if(AuthService.logged) propers.user = AuthService.user;
 
-                return AuthService.logged ? <Component {...propers} /> : <Redirect to='/signin' />
+                return AuthService.logged ? <Component {...propers} /> : <Redirect to='/signin' />;
 
             }}
             {...rest}
