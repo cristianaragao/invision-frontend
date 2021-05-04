@@ -15,7 +15,7 @@ const Routes = () => {
     return(
         <BrowserRouter basename={URL_BASE}>
             <Switch>
-                <PrivateRoute exact path="/invision-frontend/home" component={Home} />
+                <PrivateRoute exact path="/home" component={Home} />
 
                 <Route exact path="/signin" component={SigIn} />
                 <Route exact path="/signup" component={SignUp} /> 
