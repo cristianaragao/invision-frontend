@@ -1,10 +1,10 @@
-import React from 'react';
-import userEvent from '@testing-library/user-event'
-import {render, screen} from '@testing-library/react';
+import React from "react";
+import userEvent from "@testing-library/user-event"
+import {render, screen} from "@testing-library/react";
 
-import SignUp from './../pages/SignUp/index';
+import SignUp from "./../pages/SignUp/index";
 
-test('Rendering Name field correctly.', () => {
+test("Rendering Name field correctly.", () => {
     const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)
     
     expect(queryByLabelText("Full Name")).toBeTruthy()
@@ -12,7 +12,7 @@ test('Rendering Name field correctly.', () => {
 
 })
 
-test('Rendering Email field correctly.', () => {
+test("Rendering Email field correctly.", () => {
     const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)
     
     expect(queryByLabelText("Users name or Email")).toBeTruthy()
@@ -20,7 +20,7 @@ test('Rendering Email field correctly.', () => {
 
 })
 
-test('Rendering Password field correctly.', () => {
+test("Rendering Password field correctly.", () => {
     const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)
     
     expect(queryByLabelText("Password")).toBeTruthy()

@@ -6,21 +6,23 @@ export const AuthService = {
 
     async signIn(user){
 
+        console.log("user entrou: ", user);
+
         this.user = user;
 
         this.logged = true;
 
-        setTimeout(user, 100);
+        setTimeout(null, 100);
 
     },
 
-    async signOut(cb) {
+    async signOut() {
 
         this.user = {};
 
         this.logged = false;
 
-        setTimeout(cb, 100);
+        setTimeout(null, 100);
 
     }
 

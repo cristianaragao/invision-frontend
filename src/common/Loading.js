@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-import { Dialog, CircularProgress } from '@material-ui/core';
+import { Dialog, CircularProgress } from "@material-ui/core";
 
-import './style.css';
+import "./style.css";
 
 let showLoadingFunction;
 
 const Styles = makeStyles(() => ({
     background: {
         color: "#FFF",
-        marginRight: '20px'
+        marginRight: "20px"
     },
 
     font: {
-        margin: 'auto',
+        margin: "auto",
         color: "#FFF",
-        fontSize: '30px',
+        fontSize: "30px",
     }
 }));
 

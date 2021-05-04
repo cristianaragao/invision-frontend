@@ -1,52 +1,52 @@
 /* REACT AND LIBRARIES */
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 
-import { openSnackbar } from './../../common/Notifier';
+import { openSnackbar } from "./../../common/Notifier";
 
 /* MATERIAL UI/CORE/ */
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 
 /* Authenticator */
-import { AuthService } from './../../routes/AuthService';
+import { AuthService } from "./../../routes/AuthService";
 
-import './style.css';
+import "./style.css";
 
 const useStyles = {
 
     root: {
-      flexGrow: '1',
+      flexGrow: "1",
     },
 
     header: {
-        color: '#000'
+        color: "#000"
     },
 
     menuButton: {
-      marginRight: '20px',
+      marginRight: "20px",
     },
 
     title: {
-      flexGrow: '1'
+      flexGrow: "1"
     },
 
     h1: {
-      textAlign: 'center',
-      marginTop: '35vh',
-      fontSize: '50px',
-      color: '#707070',
+      textAlign: "center",
+      marginTop: "35vh",
+      fontSize: "50px",
+      color: "#707070",
     },
     
     h1_1: {
-      textAlign: 'center',
-      marginTop: '45vh',
-      fontSize: '30px',
-      color: '#707070',
+      textAlign: "center",
+      marginTop: "45vh",
+      fontSize: "30px",
+      color: "#707070",
     }
 
 };
@@ -58,13 +58,15 @@ const Home = (propers) => {
 
     const user = propers.user;
 
+    console.log("entrou na home");
+
     const handleLogout = async () => {
 
-        openSnackbar({ msg: 'Logged out!', tp: 'success'});
-
-        history.replace('/signin');
+        openSnackbar({ msg: "Logged out!", tp: "success"});
         
         AuthService.signOut();
+        
+        history.push("/signin");
         
     };
 

@@ -1,41 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 /* MATERIAL UI/CORE/ */
-import Divider from '@material-ui/core/Divider';
+import Divider from "@material-ui/core/Divider";
 
 /* STYLES CSS */
-import { Input } from './../../common/Input';
-import { stylesDesktop, stylesMobile } from './../../common/styles.css';
-import './style.css';
+import { Input } from "./../../common/Input";
+import { stylesDesktop, stylesMobile } from "./../../common/styles.css";
+import "./style.css";
 
 /* POPUP GOOGLE */
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
 
-import 'antd/dist/antd.css';
-import { Carousel } from 'antd';
+import "antd/dist/antd.css";
+import { Carousel } from "antd";
 
 /* API BACKEND */
-import api from '../../services/api';
+import api from "../../services/api";
 
 /* ASSETS */
-import imgData from './../../assets/Data.png';
+import imgData from "./../../assets/Data.png";
 
 /* MESSAGES */
-import { openSnackbar } from './../../common/Notifier';
+import { openSnackbar } from "./../../common/Notifier";
 
 /* LOADING */
-import { showLoading } from './../../common/Loading';
+import { showLoading } from "./../../common/Loading";
 
 const tamMinDesktop = 1300;
 const tamMinMobile = 500;
 
 export default function SigIn(){
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [errorInput, setErrorInput] = useState('');
+    const history = useHistory();
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorInput, setErrorInput] = useState("");
 
 
     const slides = [
@@ -79,57 +81,57 @@ export default function SigIn(){
     async function handleRegister(e){
         e.preventDefault();
         
-        if(name === ''){
-            setErrorInput('name');
-            openSnackbar({ msg: 'Name cannot be empty.', tp: 'error' });
+        if(name === ""){
+            setErrorInput("name");
+            openSnackbar({ msg: "Name cannot be empty.", tp: "error" });
             document.getElementById("input-name").style.color = "red";
             return;
         }
 
-        const nameFull = name.split(' ');
+        const nameFull = name.split(" ");
         
         if(nameFull.length === 1){
-            setErrorInput('name');
-            openSnackbar({ msg: 'Enter your full name.', tp: 'error' });
+            setErrorInput("name");
+            openSnackbar({ msg: "Enter your full name.", tp: "error" });
             document.getElementById("input-name").style.color = "red";
             return;
         }
 
-        if(email === ''){
-            setErrorInput('email');
-            openSnackbar({ msg: 'Email cannot be empty.', tp: 'error' });
+        if(email === ""){
+            setErrorInput("email");
+            openSnackbar({ msg: "Email cannot be empty.", tp: "error" });
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
-        const emailValidate = email.split('@');
+        const emailValidate = email.split("@");
 
         if(emailValidate.length <= 1){
-            setErrorInput('email');
-            openSnackbar({ msg: 'Invalid email!', tp: 'error' });
+            setErrorInput("email");
+            openSnackbar({ msg: "Invalid email!", tp: "error" });
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
-        const partFinalEmailValidate = emailValidate[1].split('.');
+        const partFinalEmailValidate = emailValidate[1].split(".");
 
         if(partFinalEmailValidate.length <= 1){
-            setErrorInput('email');
-            openSnackbar({ msg: 'Invalid email!', tp: 'error' });
+            setErrorInput("email");
+            openSnackbar({ msg: "Invalid email!", tp: "error" });
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
         if(password.length === 0){
-            openSnackbar({ msg: 'Password cannot be empty.', tp: 'error' });
-            setErrorInput('password');
+            openSnackbar({ msg: "Password cannot be empty.", tp: "error" });
+            setErrorInput("password");
             document.getElementById("input-password").style.color = "red";
             return;
         }
 
-        if(password.length <= 6){
-            openSnackbar({ msg: 'Password field cannot be less than 6 characters.', tp: 'error' });
-            setErrorInput('password');
+        if(password.length < 6){
+            openSnackbar({ msg: "Password field cannot be less than 6 characters.", tp: "error" });
+            setErrorInput("password");
             document.getElementById("input-password").style.color = "red";
             return;
         }
@@ -145,7 +147,7 @@ export default function SigIn(){
 
         try{
 
-            const response = await api.post('signup', data);
+            const response = await api.post("signup", data);
 
             showLoading(false);
 
@@ -153,13 +155,13 @@ export default function SigIn(){
 
             if(created){
 
-                openSnackbar({ msg: 'Registration completed!', tp: 'success' });
+                openSnackbar({ msg: "Registration completed!", tp: "success" });
 
-                return <Link to="/signin"/>;
+                history.push("/signin");
             }
             else{
 
-                openSnackbar({ msg: 'Email already registered!', tp: 'error' });
+                openSnackbar({ msg: "Email already registered!", tp: "error" });
                 
             }
 
@@ -168,7 +170,7 @@ export default function SigIn(){
 
             showLoading(false);
 
-            openSnackbar({ msg: 'Server off.', tp: 'error' });
+            openSnackbar({ msg: "Server off.", tp: "error" });
         }
 
     };
@@ -181,7 +183,7 @@ export default function SigIn(){
         const data = {
             name: nameGoogle,
             email: emailGoogle,
-            password: '',
+            password: "",
             account_google: true,
         };
 
@@ -189,7 +191,7 @@ export default function SigIn(){
 
         try{
 
-            const response = await api.post('signup', data);
+            const response = await api.post("signup", data);
 
             showLoading(false);
 
@@ -197,14 +199,14 @@ export default function SigIn(){
 
             if(created){
 
-                openSnackbar({ msg: 'Registration completed!', tp: 'success' });
+                openSnackbar({ msg: "Registration completed!", tp: "success" });
 
-                return <Link to="/signin"/>;
+                history.push("/signin");
 
             }
             else{         
 
-                openSnackbar({ msg: 'Email already registered!', tp: 'error' });
+                openSnackbar({ msg: "Email already registered!", tp: "error" });
 
             }
 
@@ -213,7 +215,7 @@ export default function SigIn(){
 
             showLoading(false);
 
-            openSnackbar({ msg: 'Server off.', tp: 'error' });
+            openSnackbar({ msg: "Server off.", tp: "error" });
 
         }
 
@@ -236,7 +238,7 @@ export default function SigIn(){
                         slides.map((item) => (
                             <div key={getRandomInt(0,100)} className="div">
                                 <img
-                                    width={window.innerWidth <= tamMinMobile ? '300px' : {}}
+                                    width={window.innerWidth <= tamMinMobile ? "300px" : {}}
                                     src={item.src}
                                     alt={item.alt}
                                 />
@@ -275,7 +277,7 @@ export default function SigIn(){
                             label="Full Name"
                             placeholder="Ex: Cristian Aragão"
                             value={name}
-                            onChange={(e) => { setName(e.target.value); setErrorInput(''); }}
+                            onChange={(e) => { setName(e.target.value); setErrorInput(""); }}
                         />
 
                         <Input
@@ -285,7 +287,7 @@ export default function SigIn(){
                             label="Users name or Email"
                             placeholder="Ex: username@gmail.com"
                             value={email}
-                            onChange={(e) => { setEmail(e.target.value); setErrorInput(''); }}
+                            onChange={(e) => { setEmail(e.target.value); setErrorInput(""); }}
                         />
 
                         <Input
@@ -295,7 +297,7 @@ export default function SigIn(){
                             label="Password"
                             placeholder="Ex: username123"
                             value={password}
-                            onChange={e => { setPassword(e.target.value); setErrorInput(''); }}
+                            onChange={e => { setPassword(e.target.value); setErrorInput(""); }}
                         />
 
                         <button className="button" type="submit">Sign Up</button>
@@ -317,7 +319,7 @@ export default function SigIn(){
                         className="btnGoogle"
                         onSuccess={handleRegisterGoogle}
                         onFailure={handleRegisterGoogle}
-                        cookiePolicy={'single_host_origin'}
+                        cookiePolicy={"single_host_origin"}
                         children={<p>Sign up with Google</p>}
                     />
 

@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 
 /* Authenticator */
-import { AuthService } from './../routes/AuthService';
+import { AuthService } from "./../routes/AuthService";
 
 /* ROUTER DOM */
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+
+    console.log("auth: ", AuthService.logged);
 
     return(
         <Route
@@ -14,7 +16,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
                 if(AuthService.logged) propers.user = AuthService.user;
 
-                return AuthService.logged ? <Component {...propers} /> : <Redirect to='/signin' />;
+                console.log("auth: ", AuthService.logged);
+
+                return AuthService.logged ? <Component {...propers} /> : <Redirect to="/signin" />;
 
             }}
             {...rest}

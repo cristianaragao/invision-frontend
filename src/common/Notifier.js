@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 /* MATERIAL UI/CORE/ */
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from "@material-ui/core/Snackbar";
 
 import {
     Alert,
@@ -16,10 +16,10 @@ export function Notifier(){
 
     const [message, setMessage] = useState({
         open: false,
-        text: 'Olá',
-        type: 'success',
-        vertical: 'vertical',
-        horizontal: 'horizontal'
+        text: "Olá",
+        type: "success",
+        vertical: "vertical",
+        horizontal: "horizontal"
     });
     
     const { text, vertical, horizontal, open, type } = message;
@@ -44,7 +44,7 @@ export function Notifier(){
 
     return(
         <Snackbar
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
             autoHideDuration={3000}
             open={open}
             onClose={handleClose}
@@ -52,7 +52,7 @@ export function Notifier(){
         >
             <Alert status={type}>
                 <AlertIcon />
-                <p style={{ marginTop: '4px', fontSize: '16px', fontFamily: 'Muli' }}><b>{text}</b></p>
+                <p style={{ marginTop: "4px", fontSize: "16px", fontFamily: "Muli" }}><b>{text}</b></p>
                 <CloseButton onClick={handleClose}/>
             </Alert>
         </Snackbar>

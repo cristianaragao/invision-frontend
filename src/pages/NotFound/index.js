@@ -1,59 +1,61 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
-import { AuthService } from './../../routes/AuthService';
+import { AuthService } from "./../../routes/AuthService";
 
 const style = {
     background: {
-        height: '100vh',
-        backgroundColor: '#A9C5BA',
+        height: "100vh",
+        backgroundColor: "#A9C5BA",
     },
 
     div: {
-        height: '100vh',
-        display: 'flex',
+        height: "100vh",
+        display: "flex",
 
-        width: '50%',
-        margin: '0 auto',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        width: "50%",
+        margin: "0 auto",
+        flexDirection: "column",
+        justifyContent: "center",
     },
 
     divError: {
-        marginTop: '30px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginTop: "30px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
     h1: {
-        textAlign: 'right',
-        color: '#000',
-        font: 'normal normal 900 35px/48px Muli',
+        textAlign: "right",
+        color: "#000",
+        font: "normal normal 900 35px/48px Muli",
     },
 
     h2: {
-        margin: 'auto 0',
-        color: '#FFF',
-        fontSize: '40px',
+        margin: "auto 0",
+        color: "#FFF",
+        fontSize: "40px",
     },
 
     icon: {
-        margin: 'auto 0 auto 2%',
-        color: '#FFF',
-        fontSize: '70px',
+        margin: "auto 0 auto 2%",
+        color: "#FFF",
+        fontSize: "70px",
     }
 }
 
 export default function NotFound() {
 
+    const history = useHistory();
+
     useEffect(() => {
         const timer = setTimeout(() => {
 
-            if(AuthService.logged) <Link to="/home"/>;
-            else <Link to="/signin"/>;
+            if(AuthService.logged) history.push("/home");
+            else history.push("/signin");
             
         }, 2000);
         return () => clearTimeout(timer);

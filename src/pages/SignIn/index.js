@@ -1,37 +1,37 @@
 /* REACT AND LIBRARIES */
-import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 /* BOOTSTRAP */
-import 'antd/dist/antd.css';
-import { Carousel } from 'antd';
+import "antd/dist/antd.css";
+import { Carousel } from "antd";
 
 /* Authenticator */
-import { AuthService } from './../../routes/AuthService';
+import { AuthService } from "./../../routes/AuthService";
 
 /* MATERIAL UI/CORE/ */
-import Divider from '@material-ui/core/Divider';
+import Divider from "@material-ui/core/Divider";
 
 /* STYLES CSS */
-import { Input } from './../../common/';
-import { stylesDesktop, stylesMobile } from './../../common/styles.css';
-import './style.css';
+import { Input } from "./../../common/";
+import { stylesDesktop, stylesMobile } from "./../../common/styles.css";
+import "./style.css";
 
 /* API BACKEND */
-import api from './../../services/api';
+import api from "./../../services/api";
 
 
 /* POPUP GOOGLE */
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
 
 /* ASSETS */
-import imgData from './../../assets/Data.png';
+import imgData from "./../../assets/Data.png";
 
 /* MESSAGES */
-import { openSnackbar } from './../../common/Notifier';
+import { openSnackbar } from "./../../common/Notifier";
 
 /* LOADING */
-import { showLoading } from './../../common/Loading';
+import { showLoading } from "./../../common/Loading";
 
 const tamMinDesktop = 1300;
 const tamMinMobile = 500;
@@ -41,15 +41,13 @@ const SigIn = ( props ) => {
 
     /* CONSTAINTS */
 
-    console.log('props', props);
+    const history = useHistory();
 
     const [style, setStyle] = useState(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [errorInput, setErrorInput] = useState('');
-
-    const history = useHistory();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorInput, setErrorInput] = useState("");
 
     useEffect(() => {
         setStyle(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
@@ -92,34 +90,34 @@ const SigIn = ( props ) => {
     async function handleSignIn(e){
         e.preventDefault();
 
-        const emailValidate = email.split('@');
+        const emailValidate = email.split("@");
 
-        if(email === ''){
-            openSnackbar({ msg: 'Name field cannot be empty.', tp: 'error' });
-            setErrorInput('email');
+        if(email === ""){
+            openSnackbar({ msg: "Name field cannot be empty.", tp: "error" });
+            setErrorInput("email");
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
         if(emailValidate.length <= 1){
-            openSnackbar({ msg: 'Invalid email.', tp: 'error' });
-            setErrorInput('email');
+            openSnackbar({ msg: "Invalid email.", tp: "error" });
+            setErrorInput("email");
             document.getElementById("input-email").style.color = "red";
             return;
         }
         
-        const partFinalEmailValidate = emailValidate[1].split('.');
+        const partFinalEmailValidate = emailValidate[1].split(".");
 
         if(partFinalEmailValidate.length <= 1){
-            openSnackbar({ msg: 'Invalid email.', tp: 'error' });
-            setErrorInput('email');
+            openSnackbar({ msg: "Invalid email.", tp: "error" });
+            setErrorInput("email");
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
-        if(password === ''){
-            openSnackbar({ msg: 'Password field cannot be empty.', tp: 'error' });
-            setErrorInput('password');
+        if(password === ""){
+            openSnackbar({ msg: "Password field cannot be empty.", tp: "error" });
+            setErrorInput("password");
             document.getElementById("input-password").style.color = "red";
             return;
         }
@@ -127,28 +125,29 @@ const SigIn = ( props ) => {
         const data = {
             email: email,
             password: password,
+            account_google: false,
         };
 
         showLoading(true);
 
         try {  
 
-            const response = await api.post('signin', data);
+            const response = await api.post("signin", data);
 
             showLoading(false);
 
             if(response.data.logged){
 
-                openSnackbar({ msg: 'Logged in!', tp: 'success'});
+                openSnackbar({ msg: "Logged in!", tp: "success"});
 
                 AuthService.signIn(response.data.user);
 
-                return <Link to="/home"/>;
+                history.push(`/home`);
 
             }
             else{
 
-                openSnackbar({ msg: 'Email or Password is incorrect!', tp: 'error'});
+                openSnackbar({ msg: "Email or Password is incorrect!", tp: "error"});
 
             }
 
@@ -157,7 +156,7 @@ const SigIn = ( props ) => {
 
             showLoading(false);
 
-            openSnackbar({ msg: 'Server off.', tp: 'error'});
+            openSnackbar({ msg: "Server off.", tp: "error"});
 
         }
     };
@@ -168,7 +167,7 @@ const SigIn = ( props ) => {
 
         const data = {
             email: emailGoogle,
-            password: '',
+            password: "",
             account_google: true,
         };
 
@@ -176,23 +175,22 @@ const SigIn = ( props ) => {
 
         try {
 
-            const response = await api.post('signin', data);
+            const response = await api.post("signin", data);
 
             showLoading(false);
 
             if(response.data.logged){
 
-                openSnackbar({ msg: 'Logged in!', tp: 'success'});
+                openSnackbar({ msg: "Logged in!", tp: "success"});
 
                 AuthService.signIn(response.data.user);
                 
-                console.log('replace');
-                history.replace("/home");
+                history.push(`/home`);
 
             }
             else{
 
-                openSnackbar({ msg: 'User without account!', tp: 'error'});
+                openSnackbar({ msg: "User without account!", tp: "error"});
                 
             }
 
@@ -201,7 +199,7 @@ const SigIn = ( props ) => {
 
             showLoading(false);
 
-            openSnackbar({ msg: 'Server off.', tp: 'error'});
+            openSnackbar({ msg: "Server off.", tp: "error"});
         }
         
     }
@@ -223,7 +221,7 @@ const SigIn = ( props ) => {
                         slides.map((item, index) => (
                             <div key={getRandomInt(0, 100)} className="div">
                                 <img
-                                    width={window.innerWidth <= tamMinMobile ? '300px' : {}}
+                                    width={window.innerWidth <= tamMinMobile ? "300px" : {}}
                                     src={item.src}
                                     alt={item.alt}
                                 />
@@ -262,7 +260,7 @@ const SigIn = ( props ) => {
                             type="email"
                             placeholder="Ex: username@gmail.com"
                             value={email}
-                            onChange={(e) => { setEmail(e.target.value); setErrorInput(''); }}
+                            onChange={(e) => { setEmail(e.target.value); setErrorInput(""); }}
                         />
 
                         <Input
@@ -272,7 +270,7 @@ const SigIn = ( props ) => {
                             type="password"
                             placeholder="Ex: username123"
                             value={password}
-                            onChange={e => { setPassword(e.target.value); setErrorInput(''); }}
+                            onChange={e => { setPassword(e.target.value); setErrorInput(""); }}
                         />
 
                         <Link to="/signin">Forgot password?</Link>
@@ -296,7 +294,7 @@ const SigIn = ( props ) => {
                         className="btnGoogle"
                         onSuccess={handleSignInGoogle}
                         onFailure={handleSignInGoogle}
-                        cookiePolicy={'single_host_origin'}
+                        cookiePolicy={"single_host_origin"}
                         children={<p>Sign in with Google</p>}
                     />
 

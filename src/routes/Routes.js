@@ -1,19 +1,19 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import SigIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Home from '../pages/Home';
-import NotFound from '../pages/NotFound';
+import SigIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
 
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from "./PrivateRoute";
 
-const url_base = "/invision-frontend";
+const URL_BASE = "/invision-frontend";
 
 const Routes = () => {
 
     return(
-        <BrowserRouter basename={url_base}>
+        <BrowserRouter basename={URL_BASE}>
             <Switch>
                 <PrivateRoute exact path="/home" component={Home} />
 
