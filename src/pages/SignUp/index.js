@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 /* MATERIAL UI/CORE/ */
 import Divider from "@material-ui/core/Divider";
@@ -14,6 +14,10 @@ import { GoogleLogin } from "react-google-login";
 
 import "antd/dist/antd.css";
 import { Carousel } from "antd";
+
+/* ROUTE URL BASE */
+import { URL_BASE } from './../../routes/Routes';
+
 
 /* API BACKEND */
 import api from "../../services/api";
@@ -323,9 +327,9 @@ export default function SigIn(){
                         children={<p>Sign up with Google</p>}
                     />
 
-                    <p className="p">By signing up, you agree to Invision <Link to="/signup"><u>Terms of Conditions</u></Link> and <Link to="/signup"><u>Privacy Policy</u></Link></p>
+                    <p className="p">By signing up, you agree to Invision <a href={`${URL_BASE}/signup`}><u>Terms of Conditions</u></a> and <a href={`${URL_BASE}/signup`}><u>Privacy Policy</u></a></p>
 
-                    <p><Link to="/signin">Already on <b>Invision</b>? <u>Log in</u></Link></p>
+                    <p><a href={`${URL_BASE}/signin`}>Already on <b>Invision</b>? <u>Log in</u></a></p>
                 </div>
             </div>
         </div>

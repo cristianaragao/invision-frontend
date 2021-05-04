@@ -1,6 +1,6 @@
 /* REACT AND LIBRARIES */
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 /* BOOTSTRAP */
 import "antd/dist/antd.css";
@@ -17,9 +17,11 @@ import { Input } from "./../../common/";
 import { stylesDesktop, stylesMobile } from "./../../common/styles.css";
 import "./style.css";
 
+/* ROUTE URL BASE */
+import { URL_BASE } from './../../routes/Routes';
+
 /* API BACKEND */
 import api from "./../../services/api";
-
 
 /* POPUP GOOGLE */
 import { GoogleLogin } from "react-google-login";
@@ -273,7 +275,7 @@ const SigIn = ( props ) => {
                             onChange={e => { setPassword(e.target.value); setErrorInput(""); }}
                         />
 
-                        <Link to="/signin">Forgot password?</Link>
+                        <a href={`${URL_BASE}/signin`}>Forgot password?</a>
 
                         <button className="button" type="submit">Sign In</button>
 
@@ -298,7 +300,7 @@ const SigIn = ( props ) => {
                         children={<p>Sign in with Google</p>}
                     />
 
-                    <p><Link to="/signup">New <b>Invision</b>? <u>Create Account</u></Link></p>
+                    <p><a href={`${URL_BASE}/signup`}>New <b>Invision</b>? <u>Create Account</u></a></p>
                 </div>
             </div>
         </div>

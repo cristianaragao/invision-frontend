@@ -8,7 +8,7 @@ import NotFound from "../pages/NotFound";
 
 import PrivateRoute from "./PrivateRoute";
 
-const URL_BASE = "/invision-frontend";
+export const URL_BASE = "/invision-frontend";
 
 const Routes = () => {
 
