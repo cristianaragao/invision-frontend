@@ -236,7 +236,7 @@ export default function SigIn(){
         <div className="register-container" style={style.registerContainer}>
 
             <div className="content-carousel" style={style.contentCarousel}>
-                <Carousel className="caurosel" autoplay>
+                <Carousel className="caurosel" style={style.slidesCarousel}  autoplay>
 
                     {
                         slides.map((item) => (

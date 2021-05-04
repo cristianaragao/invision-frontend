@@ -43,11 +43,15 @@
 
 @media only screen and (max-width: 500px) {
     .content-carousel .ant-carousel ul {
-        margin-top: 40vh;
+        margin-bottom: 40vh;
+    }
+s
+    .ant-carousel {
+        height: 100vh;
     }
 
-    .ant-carousel {
-        height: 90vh;
+    .slick-list .slick-track div div .div {
+        height: 100vh;
     }
 }
 
@@ -62,6 +66,10 @@
 .content-carousel {
     background: var(--content-form-background);
     width: 50%;
+}
+
+.content-carousel .caurosel{
+    margin: 112px auto auto auto;
 }
 
 .content-signin{
@@ -224,6 +232,20 @@
     margin: auto 10px;
     font: var(--font-18-normal);
     color: var(--color2);
+}
+
+.content-carousel .ant-carousel ul li button{
+    width: 10px;
+    height: 11px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 50px;
+}
+
+.content-carousel .ant-carousel ul .slick-active button{
+    width: 26px;
+    height: 11px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 50px;
 }
 
 .content-signin .forms p {
