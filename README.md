@@ -25,7 +25,7 @@ Install all frontend dependencies
 ```bash
 npm install
 ```
-After, run o project frontend:
+After, run project frontend:
 
 ```bash
 npm start
