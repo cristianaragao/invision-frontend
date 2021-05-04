@@ -4,9 +4,36 @@
 
 # Invison
 
-<hr/>
-
 Project created with ReactJS + NodeJS
 
+To view the project in the browser visit: [https://cristianaragao.github.io/invision-frontend/signin](https://cristianaragao.github.io/invision-frontend/signin)
 
-To view the project in the browser visit: [https://cristianaragao.github.io/signin](https://cristianaragao.github.io/signin)
+<hr/>
+
+To view the Back-End code visit: [https://github.com/cristianaragao/invision-backend](https://github.com/cristianaragao/invision-backend)
+
+# Run Project in your machine
+
+🛠 Installation prerequisites:
+
+* **Node e NPM** install on the site: [https://nodejs.org/en/](https://nodejs.org/en/)
+
+
+In folder root:
+
+Install all frontend dependencies
+
+```bash
+npm install
+```
+After, run o project frontend:
+
+```bash
+npm start
+```
+
+Open project in [http://localhost:3000/invision-frontend](http://localhost:3000/invision-frontend) to view project in the browser.
+
+<hr>
+
+# Thanks for visiting! :grin:
