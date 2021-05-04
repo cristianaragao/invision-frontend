@@ -6,7 +6,7 @@
 
 Project created with ReactJS + NodeJS
 
-To view the project in the browser visit: [https://cristianaragao.github.io/invision-frontend/signin](https://cristianaragao.github.io/invision-frontend/signin)
+To view the project in the browser visit: [https://cristianaragao.github.io/invision-frontend/](https://cristianaragao.github.io/invision-frontend/)
 
 <hr/>
 
@@ -17,7 +17,6 @@ To view the Back-End code visit: [https://github.com/cristianaragao/invision-bac
 🛠 Installation prerequisites:
 
 * **Node e NPM** install on the site: [https://nodejs.org/en/](https://nodejs.org/en/)
-
 
 In folder root:
 

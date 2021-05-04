@@ -6,6 +6,9 @@ import { useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Carousel } from "antd";
 
+/* MATERIAL UI*/
+import Link from '@material-ui/core/Link';
+
 /* Authenticator */
 import { AuthService } from "./../../routes/AuthService";
 
@@ -42,6 +45,8 @@ const tamMinMobile = 500;
 const SigIn = ( props ) => {
 
     /* CONSTAINTS */
+
+    console.log('{URL_BASE}/signup: ', `${URL_BASE}/signup`);
 
     const history = useHistory();
 
@@ -88,6 +93,10 @@ const SigIn = ( props ) => {
 
 
     /* FUNCTIONS */
+
+    function linkTo(){
+        history.push('/signup');
+    }
 
     async function handleSignIn(e){
         e.preventDefault();
@@ -300,7 +309,7 @@ const SigIn = ( props ) => {
                         children={<p>Sign in with Google</p>}
                     />
 
-                    <p><a href={`${URL_BASE}/signup`}>New <b>Invision</b>? <u>Create Account</u></a></p>
+                    <p><Link href="" onClick={linkTo}>New <b>Invision</b>? <u>Create Account</u></Link></p>
                 </div>
             </div>
         </div>
