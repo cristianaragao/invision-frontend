@@ -17,9 +17,10 @@ jobs:
 
     steps:
     - name: Checkout repositor
-      uses: |
-        actions/checkout@v2
-        nizarmah/auto-minify@v1.6
+      uses: actions/checkout@v2
+      
+    - name: Auto Minify
+      uses: nizarmah/auto-minify@master
 
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
