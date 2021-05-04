@@ -8,7 +8,7 @@ import NotFound from '../pages/NotFound';
 
 import PrivateRoute from './PrivateRoute';
 
-const Routes = (props) => {
+const Routes = () => {
 
     return(
         <BrowserRouter>

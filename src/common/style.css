@@ -1,0 +1,20 @@
+.MuiPaper-root {
+    background: none !important;
+}
+
+.MuiPaper-rounded {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.MuiDialog-paper {
+    overflow: hidden !important;
+}
+
+.MuiPaper-elevation24 {
+    box-shadow: none !important;
+}
+
+h1 {
+    margin-left: 20px;
+}

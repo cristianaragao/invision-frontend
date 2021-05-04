@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 /* MATERIAL UI/CORE/ */
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+
+import {
+    Alert,
+    AlertIcon
+  } from "@chakra-ui/react";
+
+import { CloseButton } from "@chakra-ui/react";
 
 let openSnackbarFn;
 
@@ -12,6 +18,8 @@ export function Notifier(){
         open: false,
         text: 'Olá',
         type: 'success',
+        vertical: 'vertical',
+        horizontal: 'horizontal'
     });
     
     const { text, vertical, horizontal, open, type } = message;
@@ -23,21 +31,16 @@ export function Notifier(){
                 text: msg,
                 type: tp,
             });
-
 		};
     });
 
     const handleClose = () => {
 		setMessage({
             open: false,
-            text: '',
-            type: 'error',
+            text: text,
+            type: type,
         });
 	};
-
-    function Alert(props) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-    }
 
     return(
         <Snackbar
@@ -47,8 +50,10 @@ export function Notifier(){
             onClose={handleClose}
             key={vertical + horizontal}
         >
-            <Alert onClose={handleClose} severity={type}>
-                {text}
+            <Alert status={type}>
+                <AlertIcon />
+                <p style={{ marginTop: '4px', fontSize: '16px', fontFamily: 'Muli' }}><b>{text}</b></p>
+                <CloseButton onClick={handleClose}/>
             </Alert>
         </Snackbar>
     )

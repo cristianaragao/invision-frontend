@@ -23,6 +23,7 @@ export const style = {
 
     labelField: {
         marginTop: '20px',
+        marginBottom: '5px',
         color: '#707070',
         font: 'normal normal normal 14px/18px Muli',
     }

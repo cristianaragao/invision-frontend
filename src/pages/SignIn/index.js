@@ -11,11 +11,9 @@ import { AuthService } from './../../routes/AuthService';
 
 /* MATERIAL UI/CORE/ */
 import Divider from '@material-ui/core/Divider';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
 /* STYLES CSS */
-import { Input } from './../../common/Input';
+import { Input } from './../../common/';
 import { stylesDesktop, stylesMobile } from './../../common/styles.css';
 import './style.css';
 
@@ -32,22 +30,15 @@ import imgData from './../../assets/Data.png';
 /* MESSAGES */
 import { openSnackbar } from './../../common/Notifier';
 
+/* LOADING */
+import { showLoading } from './../../common/Loading';
 
-const SigIn = ( props, { dispatch }) => {
+
+const SigIn = ( props ) => {
 
     /* CONSTAINTS */
 
-    const [message, setMessage] = useState({
-        open: false,
-        message: '',
-        type: '',
-        vertical: 'top',
-        horizontal: 'center',
-    });
-
     const [style, setStyle] = useState(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
-
-    const { text, vertical, horizontal, open, type } = message;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -92,54 +83,13 @@ const SigIn = ( props, { dispatch }) => {
 
     /* FUNCTIONS */
 
-    function Alert(propers) {
-        return <MuiAlert elevation={6} variant="filled" {...propers} />;
-    }
-
-    function handleClose(){
-        setMessage({ ...message, open: false });
-    };
-
-    async function handleSignInGoogle(resp) {
-
-        const emailGoogle = resp.ft.Qt;
-
-        const data = {
-            email: emailGoogle,
-            password: '',
-            account_google: true,
-        };
-
-        try {
-            const response = await api.post('signin', data);
-
-            if(response.data.logged){
-
-                openSnackbar({ msg: 'Logged in!', tp: 'success'});
-
-                AuthService.signIn(response.data.user);
-
-                history.push("/home");
-
-            }
-            else{
-                openSnackbar({ msg: 'User without account!', tp: 'error'});
-            }
-
-        }
-        catch {
-            openSnackbar({ msg: 'Server off.', tp: 'error'});
-        }
-        
-    }
-
     async function handleSignIn(e){
         e.preventDefault();
 
         const emailValidate = email.split('@');
 
         if(email === ''){
-            // openSnackbar({ msg: 'Name field cannot be empty.', tp: 'error' });
+            openSnackbar({ msg: 'Name field cannot be empty.', tp: 'error' });
             setErrorInput('email');
             document.getElementById("input-email").style.color = "red";
             return;
@@ -162,8 +112,9 @@ const SigIn = ( props, { dispatch }) => {
         }
 
         if(password === ''){
+            openSnackbar({ msg: 'Password field cannot be empty.', tp: 'error' });
             setErrorInput('password');
-            document.getElementById("input-email").style.color = "red";
+            document.getElementById("input-password").style.color = "red";
             return;
         }
 
@@ -172,8 +123,13 @@ const SigIn = ( props, { dispatch }) => {
             password: password,
         };
 
-        try {
+        showLoading(true);
+
+        try {  
+
             const response = await api.post('signin', data);
+
+            showLoading(false);
 
             if(response.data.logged){
 
@@ -181,7 +137,7 @@ const SigIn = ( props, { dispatch }) => {
 
                 AuthService.signIn(response.data.user);
 
-                history.push("/home");
+                history.replace("/home");
 
             }
             else{
@@ -193,26 +149,59 @@ const SigIn = ( props, { dispatch }) => {
         }
         catch {
 
+            showLoading(false);
+
             openSnackbar({ msg: 'Server off.', tp: 'error'});
 
         }
-	
     };
+
+    async function handleSignInGoogle(resp) {
+
+        const emailGoogle = resp.ft.Qt;
+
+        const data = {
+            email: emailGoogle,
+            password: '',
+            account_google: true,
+        };
+
+        showLoading(true);
+
+        try {
+
+            const response = await api.post('signin', data);
+
+            showLoading(false);
+
+            if(response.data.logged){
+
+                openSnackbar({ msg: 'Logged in!', tp: 'success'});
+
+                AuthService.signIn(response.data.user);
+                
+                console.log('replace');
+                history.replace("/home");
+
+            }
+            else{
+
+                openSnackbar({ msg: 'User without account!', tp: 'error'});
+                
+            }
+
+        }
+        catch {
+
+            showLoading(false);
+
+            openSnackbar({ msg: 'Server off.', tp: 'error'});
+        }
+        
+    }
 
     return(
         <div className="register-container" style={style.registerContainer}>
-
-            <Snackbar
-                anchorOrigin={{ vertical, horizontal }}
-                autoHideDuration={3000}
-                open={open}
-                onClose={handleClose}
-                key={vertical + horizontal}
-            >
-                <Alert onClose={handleClose} severity={type}>
-                    {text}
-                </Alert>
-            </Snackbar>
 
             <div className="content-carousel" style={style.contentCarousel}>
                 <Carousel className="caurosel" autoplay>
@@ -257,7 +246,8 @@ const SigIn = ( props, { dispatch }) => {
                             id="input-email"
                             error={errorInput}
                             type="email"
-                            placeholder="Users name or Email"
+                            label="Users name or Email"
+                            placeholder="Ex: username@gmail.com"
                             value={email}
                             onChange={(e) => { setEmail(e.target.value); setErrorInput(''); }}
                         />
@@ -266,7 +256,8 @@ const SigIn = ( props, { dispatch }) => {
                             id="input-password"
                             error={errorInput}
                             type="password"
-                            placeholder="Password"
+                            label="Password"
+                            placeholder="Ex: username123"
                             value={password}
                             onChange={e => { setPassword(e.target.value); setErrorInput(''); }}
                         />

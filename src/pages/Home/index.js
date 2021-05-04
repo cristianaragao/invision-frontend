@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     },
 
     header: {
-        background: '#A9C5BA',
+        backgroundColor: '#A9C5BA',
         color: '#000'
     },
 
@@ -51,7 +51,7 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-const Home = (propers , { dispatch }) => {
+const Home = (propers) => {
     const classes = useStyles();
 
     const history = useHistory();
@@ -62,7 +62,7 @@ const Home = (propers , { dispatch }) => {
 
         openSnackbar({ msg: 'Logged out!', tp: 'success'});
 
-        history.push('/signin');
+        history.replace('/signin');
         
         AuthService.signOut();
         

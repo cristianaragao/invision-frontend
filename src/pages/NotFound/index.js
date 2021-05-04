@@ -54,10 +54,8 @@ export default function Home() {
     useEffect(() => {
         const timer = setTimeout(() => {
 
-            console.log('AuthService: ', AuthService);
-
-            if(AuthService.logged) history.push('/home');
-            else history.push('/signin');
+            if(AuthService.logged) history.replace('/home');
+            else history.replace('/signin');
             
         }, 2000);
         return () => clearTimeout(timer);

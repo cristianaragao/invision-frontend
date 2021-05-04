@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom';
 
 /* MATERIAL UI/CORE/ */
 import Divider from '@material-ui/core/Divider';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';  
 
 /* STYLES CSS */
 import { Input } from './../../common/Input';
@@ -26,6 +24,9 @@ import imgData from './../../assets/Data.png';
 /* MESSAGES */
 import { openSnackbar } from './../../common/Notifier';
 
+/* LOADING */
+import { showLoading } from './../../common/Loading';
+
 export default function SigIn(){
 
     const [name, setName] = useState('');
@@ -34,14 +35,6 @@ export default function SigIn(){
     const [errorInput, setErrorInput] = useState('');
 
     const history = useHistory();
-
-    const [message, setMessage] = useState({
-        open: false,
-        text: '',
-        vertical: 'top',
-        horizontal: 'center',
-        type: '',
-    });
 
     const slides = [
         {   
@@ -73,8 +66,6 @@ export default function SigIn(){
         },
     ];
 
-    const { text, vertical, horizontal, open, type } = message;
-
     const [style, setStyle] = useState(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
 
     /* FUNCTIONS */
@@ -83,20 +74,12 @@ export default function SigIn(){
         setStyle(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
     }, []);
 
-    function handleClose(){
-        setMessage({ ...message, open: false });
-    };
-
-    function Alert(props) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-    }
-
     async function handleRegister(e){
         e.preventDefault();
         
         if(name === ''){
-            setMessage({ ...message, text: 'Name field cannot be empty.', open: true, type: 'error' });
             setErrorInput('name');
+            openSnackbar({ msg: 'Name cannot be empty.', tp: 'error' });
             document.getElementById("input-name").style.color = "red";
             return;
         }
@@ -104,17 +87,24 @@ export default function SigIn(){
         const nameFull = name.split(' ');
         
         if(nameFull.length === 1){
-            setMessage({ ...message, text: 'Enter your full name.', open: true, type: 'error' });
             setErrorInput('name');
+            openSnackbar({ msg: 'Enter your full name.', tp: 'error' });
             document.getElementById("input-name").style.color = "red";
+            return;
+        }
+
+        if(email === ''){
+            setErrorInput('email');
+            openSnackbar({ msg: 'Email cannot be empty.', tp: 'error' });
+            document.getElementById("input-email").style.color = "red";
             return;
         }
 
         const emailValidate = email.split('@');
 
         if(emailValidate.length <= 1){
-            setMessage({ ...message, text: 'Invalid email!', open: true, type: 'error' });
             setErrorInput('email');
+            openSnackbar({ msg: 'Invalid email!', tp: 'error' });
             document.getElementById("input-email").style.color = "red";
             return;
         }
@@ -122,14 +112,21 @@ export default function SigIn(){
         const partFinalEmailValidate = emailValidate[1].split('.');
 
         if(partFinalEmailValidate.length <= 1){
-            setMessage({ ...message, text: 'Invalid email!', open: true, type: 'error' });
             setErrorInput('email');
+            openSnackbar({ msg: 'Invalid email!', tp: 'error' });
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
-        if(password.length < 6){
-            setMessage({ ...message, text: 'Password field cannot be less than 6 characters.', open: true, type: 'error' });
+        if(password.length === 0){
+            openSnackbar({ msg: 'Password cannot be empty.', tp: 'error' });
+            setErrorInput('password');
+            document.getElementById("input-password").style.color = "red";
+            return;
+        }
+
+        if(password.length <= 6){
+            openSnackbar({ msg: 'Password field cannot be less than 6 characters.', tp: 'error' });
             setErrorInput('password');
             document.getElementById("input-password").style.color = "red";
             return;
@@ -139,24 +136,36 @@ export default function SigIn(){
             name: name,
             email: email,
             password: password,
+            account_google: false,
         };
+
+        showLoading(true);
 
         try{
 
             const response = await api.post('signup', data);
 
+            showLoading(false);
+
             const created = response.data.created;
 
             if(created){
+
                 openSnackbar({ msg: 'Registration completed!', tp: 'success' });
-                history.push('/signin');
+
+                history.replace('/signin');
             }
             else{
+
                 openSnackbar({ msg: 'Email already registered!', tp: 'error' });
+                
             }
 
         }
         catch{
+
+            showLoading(false);
+
             openSnackbar({ msg: 'Server off.', tp: 'error' });
         }
 
@@ -171,43 +180,45 @@ export default function SigIn(){
             name: nameGoogle,
             email: emailGoogle,
             password: '',
+            account_google: true,
         };
+
+        showLoading(true);
 
         try{
 
             const response = await api.post('signup', data);
 
+            showLoading(false);
+
             const created = response.data.created;
 
             if(created){
+
                 openSnackbar({ msg: 'Registration completed!', tp: 'success' });
-                history.push('/signin');
+
+                history.replace('/signin');
+
             }
-            else{
+            else{         
+
                 openSnackbar({ msg: 'Email already registered!', tp: 'error' });
+
             }
 
         }
         catch{
+
+            showLoading(false);
+
             openSnackbar({ msg: 'Server off.', tp: 'error' });
+
         }
 
     }
 
     return(
         <div className="register-container" style={style.registerContainer}>
-
-            <Snackbar
-                anchorOrigin={{ vertical, horizontal }}
-                autoHideDuration={3000}
-                open={open}
-                onClose={handleClose}
-                key={vertical + horizontal}
-            >
-                <Alert onClose={handleClose} severity={type}>
-                    {text}
-                </Alert>
-            </Snackbar>
 
             <div className="content-carousel" style={style.contentCarousel}>
                 <Carousel className="caurosel" autoplay>
@@ -252,7 +263,8 @@ export default function SigIn(){
                             id="input-name"
                             error={errorInput}
                             type="text"
-                            placeholder="Full Name"
+                            label="Full Name"
+                            placeholder="Ex: Cristian Aragão"
                             value={name}
                             onChange={(e) => { setName(e.target.value); setErrorInput(''); }}
                         />
@@ -261,7 +273,8 @@ export default function SigIn(){
                             id="input-email"
                             error={errorInput}
                             type="email"
-                            placeholder="Users name or Email"
+                            label="Users name or Email"
+                            placeholder="Ex: username@gmail.com"
                             value={email}
                             onChange={(e) => { setEmail(e.target.value); setErrorInput(''); }}
                         />
@@ -270,7 +283,8 @@ export default function SigIn(){
                             id="input-password"
                             error={errorInput}
                             type="password"
-                            placeholder="Password"
+                            label="Password"
+                            placeholder="Ex: username123"
                             value={password}
                             onChange={e => { setPassword(e.target.value); setErrorInput(''); }}
                         />
