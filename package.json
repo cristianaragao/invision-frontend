@@ -1,6 +1,5 @@
 {
   "name": "invision",
-  "homepage": "https://cristianaragao.github.io/invision-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -52,6 +51,8 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^11.2.6"
+    "@testing-library/react": "^11.2.6",
+    "serve": "^11.3.2",
+    "webpack-cli": "^4.6.0"
   }
 }

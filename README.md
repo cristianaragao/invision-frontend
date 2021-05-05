@@ -6,8 +6,6 @@
 
 Project created with ReactJS + NodeJS
 
-<!-- To view the project in the browser visit: [https://cristianaragao.github.io/invision-frontend/](https://cristianaragao.github.io/invision-frontend/) -->
-
 <hr/>
 
 To view the Back-End code visit: [https://github.com/cristianaragao/invision-backend](https://github.com/cristianaragao/invision-backend)
