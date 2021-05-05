@@ -174,7 +174,20 @@ const SigIn = ( props ) => {
 
     async function handleSignInGoogle(resp) {
 
-        const emailGoogle = resp.ft.Qt;
+        let emailGoogle = resp.ft.Qt;
+
+        try{
+
+            emailGoogle = resp.ft.Qt;
+
+        }
+        catch{
+
+            openSnackbar({ msg: "Error logging with Google.", tp: "error" });
+
+            return;
+
+        }
 
         const data = {
             email: emailGoogle,

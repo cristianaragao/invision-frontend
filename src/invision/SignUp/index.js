@@ -185,9 +185,24 @@ export default function SigIn(){
     };
 
     async function handleRegisterGoogle (resp) {
+
+        let emailGoogle;
+        let nameGoogle;
+
+        try{
+
+            emailGoogle = resp.ft.Qt;
+            nameGoogle = resp.ft.Te;
+
+        }
+        catch{
+
+            openSnackbar({ msg: "Error logging with Google.", tp: "error" });
+
+        }
         
-        const emailGoogle = resp.ft.Qt;
-        const nameGoogle = resp.ft.Te;
+        emailGoogle = resp.ft.Qt;
+        nameGoogle = resp.ft.Te;
 
         const data = {
             name: nameGoogle,
