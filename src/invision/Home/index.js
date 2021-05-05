@@ -58,8 +58,6 @@ const Home = (propers) => {
 
     const user = propers.user;
 
-    console.log("entrou na home");
-
     const handleLogout = async () => {
 
         openSnackbar({ msg: "Logged out!", tp: "success"});

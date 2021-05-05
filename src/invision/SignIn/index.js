@@ -42,11 +42,9 @@ const tamMinDesktop = 1300;
 const tamMinMobile = 500;
 
 
-const SigIn = ( props ) => {
+const SigIn = () => {
 
     /* CONSTAINTS */
-
-    console.log('{URL_BASE}/signup: ', `${URL_BASE}/signup`);
 
     const history = useHistory();
 

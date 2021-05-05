@@ -1,8 +1,9 @@
 import React from "react";
-import userEvent from "@testing-library/user-event"
-import {render, screen} from "@testing-library/react";
 
-import SignUp from "./../pages/SignUp/index";
+import {render} from "@testing-library/react";
+
+import SignUp from "../invision/SignUp/index";
+
 
 test("Rendering Name field correctly.", () => {
     const { queryByLabelText, queryAllByPlaceholderText} = render(<SignUp />)

@@ -6,8 +6,6 @@ export const AuthService = {
 
     async signIn(user){
 
-        console.log("user entrou: ", user);
-
         this.user = user;
 
         this.logged = true;
