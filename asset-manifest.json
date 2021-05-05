@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/page/signin/static/css/main.76590eed.chunk.css",
-    "main.js": "/page/signin/static/js/main.de68105e.chunk.js",
-    "main.js.map": "/page/signin/static/js/main.de68105e.chunk.js.map",
-    "runtime-main.js": "/page/signin/static/js/runtime-main.82bd2952.js",
-    "runtime-main.js.map": "/page/signin/static/js/runtime-main.82bd2952.js.map",
-    "static/css/2.54787924.chunk.css": "/page/signin/static/css/2.54787924.chunk.css",
-    "static/js/2.98155bea.chunk.js": "/page/signin/static/js/2.98155bea.chunk.js",
-    "static/js/2.98155bea.chunk.js.map": "/page/signin/static/js/2.98155bea.chunk.js.map",
-    "static/js/3.0fa4fc97.chunk.js": "/page/signin/static/js/3.0fa4fc97.chunk.js",
-    "static/js/3.0fa4fc97.chunk.js.map": "/page/signin/static/js/3.0fa4fc97.chunk.js.map",
-    "index.html": "/page/signin/index.html",
-    "static/css/2.54787924.chunk.css.map": "/page/signin/static/css/2.54787924.chunk.css.map",
-    "static/css/main.76590eed.chunk.css.map": "/page/signin/static/css/main.76590eed.chunk.css.map",
-    "static/js/2.98155bea.chunk.js.LICENSE.txt": "/page/signin/static/js/2.98155bea.chunk.js.LICENSE.txt",
-    "static/media/Data.3b09a15d.png": "/page/signin/static/media/Data.3b09a15d.png"
+    "main.css": "/invision-frontend/static/css/main.76590eed.chunk.css",
+    "main.js": "/invision-frontend/static/js/main.07b380e0.chunk.js",
+    "main.js.map": "/invision-frontend/static/js/main.07b380e0.chunk.js.map",
+    "runtime-main.js": "/invision-frontend/static/js/runtime-main.02099ab6.js",
+    "runtime-main.js.map": "/invision-frontend/static/js/runtime-main.02099ab6.js.map",
+    "static/css/2.54787924.chunk.css": "/invision-frontend/static/css/2.54787924.chunk.css",
+    "static/js/2.98155bea.chunk.js": "/invision-frontend/static/js/2.98155bea.chunk.js",
+    "static/js/2.98155bea.chunk.js.map": "/invision-frontend/static/js/2.98155bea.chunk.js.map",
+    "static/js/3.0fa4fc97.chunk.js": "/invision-frontend/static/js/3.0fa4fc97.chunk.js",
+    "static/js/3.0fa4fc97.chunk.js.map": "/invision-frontend/static/js/3.0fa4fc97.chunk.js.map",
+    "index.html": "/invision-frontend/index.html",
+    "static/css/2.54787924.chunk.css.map": "/invision-frontend/static/css/2.54787924.chunk.css.map",
+    "static/css/main.76590eed.chunk.css.map": "/invision-frontend/static/css/main.76590eed.chunk.css.map",
+    "static/js/2.98155bea.chunk.js.LICENSE.txt": "/invision-frontend/static/js/2.98155bea.chunk.js.LICENSE.txt",
+    "static/media/Data.3b09a15d.png": "/invision-frontend/static/media/Data.3b09a15d.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.82bd2952.js",
+    "static/js/runtime-main.02099ab6.js",
     "static/css/2.54787924.chunk.css",
     "static/js/2.98155bea.chunk.js",
     "static/css/main.76590eed.chunk.css",
-    "static/js/main.de68105e.chunk.js"
+    "static/js/main.07b380e0.chunk.js"
   ]
 }
