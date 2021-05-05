@@ -29,7 +29,7 @@ After, run project frontend:
 npm start
 ```
 
-Open project in [http://localhost:3000/invision-frontend](http://localhost:3000/invision-frontend) to view project in the browser.
+Open project in [http://localhost:3000/signin](http://localhost:3000/signin) to view project in the browser.
 
 <hr>
 
