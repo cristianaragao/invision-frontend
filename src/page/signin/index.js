@@ -1,45 +1,60 @@
+/* REACT AND LIBRARIES */
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-/* MATERIAL UI/CORE/ */
-import Divider from "@material-ui/core/Divider";
-import Link from '@material-ui/core/Link';
-
-/* STYLES CSS */
-import { Input } from "./../../common/Input";
-import { stylesDesktop, stylesMobile } from "./../../common/styles.css";
-import "./style.css";
-
-/* POPUP GOOGLE */
-import { GoogleLogin } from "react-google-login";
-
+/* BOOTSTRAP */
 import "antd/dist/antd.css";
 import { Carousel } from "antd";
 
+/* MATERIAL UI*/
+import Link from '@material-ui/core/Link';
+
+/* Authenticator */
+import { AuthService } from "../../routes/AuthService";
+
+/* MATERIAL UI/CORE/ */
+import Divider from "@material-ui/core/Divider";
+
+/* STYLES CSS */
+import { Input } from "../../common";
+import { stylesDesktop, stylesMobile } from "../../common/styles.css";
+import "./style.css";
+
 /* API BACKEND */
 import api from "../../services/api";
+
+/* POPUP GOOGLE */
+import { GoogleLogin } from "react-google-login";
 
 /* ASSETS */
 import imgData from "./../../assets/Data.png";
 
 /* MESSAGES */
-import { openSnackbar } from "./../../common/Notifier";
+import { openSnackbar } from "../../common/Notifier";
 
 /* LOADING */
-import { showLoading } from "./../../common/Loading";
+import { showLoading } from "../../common/Loading";
 
 const tamMinDesktop = 1300;
 const tamMinMobile = 500;
 
-export default function SigIn(){
+
+export default function SigIn () {
+
+    /* CONSTAINTS */
 
     const history = useHistory();
 
-    const [name, setName] = useState("");
+    const [style, setStyle] = useState(window.innerWidth > 1300 ? stylesDesktop : stylesMobile);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorInput, setErrorInput] = useState("");
 
+    useEffect(() => {
+        setStyle(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
+        document.getElementsByClassName("slick-dots slick-dots-bottom").style = stylesMobile.listButtonsSlide;
+    }, []);
 
     const slides = [
         {   
@@ -71,82 +86,45 @@ export default function SigIn(){
         },
     ];
 
-    const [style, setStyle] = useState(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
 
     /* FUNCTIONS */
 
-    useEffect(() => {
-        setStyle(window.innerWidth > tamMinDesktop ? stylesDesktop : stylesMobile);
-    }, []);
-
-    function linkToSign(){
-        history.push("/signin");
-    }
-
-    function linkToSignup(){
-        history.push("/signup");
-    }
-
-    async function handleRegister(e){
+    async function handleSignIn(e){
         e.preventDefault();
-        
-        if(name === ""){
-            setErrorInput("name");
-            openSnackbar({ msg: "Name cannot be empty.", tp: "error" });
-            document.getElementById("input-name").style.color = "red";
-            return;
-        }
-
-        const nameFull = name.split(" ");
-        
-        if(nameFull.length === 1){
-            setErrorInput("name");
-            openSnackbar({ msg: "Enter your full name.", tp: "error" });
-            document.getElementById("input-name").style.color = "red";
-            return;
-        }
-
-        if(email === ""){
-            setErrorInput("email");
-            openSnackbar({ msg: "Email cannot be empty.", tp: "error" });
-            document.getElementById("input-email").style.color = "red";
-            return;
-        }
 
         const emailValidate = email.split("@");
 
-        if(emailValidate.length <= 1){
+        if(email === ""){
+            openSnackbar({ msg: "Name field cannot be empty.", tp: "error" });
             setErrorInput("email");
-            openSnackbar({ msg: "Invalid email!", tp: "error" });
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
+        if(emailValidate.length <= 1){
+            openSnackbar({ msg: "Invalid email.", tp: "error" });
+            setErrorInput("email");
+            document.getElementById("input-email").style.color = "red";
+            return;
+        }
+        
         const partFinalEmailValidate = emailValidate[1].split(".");
 
         if(partFinalEmailValidate.length <= 1){
+            openSnackbar({ msg: "Invalid email.", tp: "error" });
             setErrorInput("email");
-            openSnackbar({ msg: "Invalid email!", tp: "error" });
             document.getElementById("input-email").style.color = "red";
             return;
         }
 
-        if(password.length === 0){
-            openSnackbar({ msg: "Password cannot be empty.", tp: "error" });
-            setErrorInput("password");
-            document.getElementById("input-password").style.color = "red";
-            return;
-        }
-
-        if(password.length < 6){
-            openSnackbar({ msg: "Password field cannot be less than 6 characters.", tp: "error" });
+        if(password === ""){
+            openSnackbar({ msg: "Password field cannot be empty.", tp: "error" });
             setErrorInput("password");
             document.getElementById("input-password").style.color = "red";
             return;
         }
 
         const data = {
-            name: name,
             email: email,
             password: password,
             account_google: false,
@@ -154,58 +132,55 @@ export default function SigIn(){
 
         showLoading(true);
 
-        try{
+        try {  
 
-            const response = await api.post("signup", data);
+            const response = await api.post("signin", data);
 
             showLoading(false);
 
-            const created = response.data.created;
+            if(response.data.logged){
 
-            if(created){
+                openSnackbar({ msg: "Logged in!", tp: "success"});
 
-                openSnackbar({ msg: "Registration completed!", tp: "success" });
+                AuthService.signIn(response.data.user);
 
-                history.push("/signin");
+                history.push(`/home`);
+
             }
             else{
 
-                openSnackbar({ msg: "Email already registered!", tp: "error" });
-                
+                openSnackbar({ msg: "Email or Password is incorrect!", tp: "error"});
+
             }
 
         }
-        catch{
+        catch {
 
             showLoading(false);
 
-            openSnackbar({ msg: "Server off.", tp: "error" });
-        }
+            openSnackbar({ msg: "Server off.", tp: "error"});
 
+        }
     };
 
-    async function handleRegisterGoogle (resp) {
+    async function handleSignInGoogle(resp) {
 
-        let emailGoogle;
-        let nameGoogle;
+        let emailGoogle = resp.ft.Qt;
 
         try{
 
             emailGoogle = resp.ft.Qt;
-            nameGoogle = resp.ft.Te;
 
         }
         catch{
 
-            openSnackbar({ msg: "Error logging with Google.", tp: "error" });
+            openSnackbar({ msg: "Operation canceled.", tp: "error" });
+
+            return;
 
         }
-        
-        emailGoogle = resp.ft.Qt;
-        nameGoogle = resp.ft.Te;
 
         const data = {
-            name: nameGoogle,
             email: emailGoogle,
             password: "",
             account_google: true,
@@ -213,36 +188,35 @@ export default function SigIn(){
 
         showLoading(true);
 
-        try{
+        try {
 
-            const response = await api.post("signup", data);
-
-            showLoading(false);
-
-            const created = response.data.created;
-
-            if(created){
-
-                openSnackbar({ msg: "Registration completed!", tp: "success" });
-
-                history.push("/signin");
-
-            }
-            else{         
-
-                openSnackbar({ msg: "Email already registered!", tp: "error" });
-
-            }
-
-        }
-        catch{
+            const response = await api.post("signin", data);
 
             showLoading(false);
 
-            openSnackbar({ msg: "Server off.", tp: "error" });
+            if(response.data.logged){
+
+                openSnackbar({ msg: "Logged in!", tp: "success"});
+
+                AuthService.signIn(response.data.user);
+                
+                history.push(`/home`);
+
+            }
+            else{
+
+                openSnackbar({ msg: "User without account!", tp: "error"});
+                
+            }
 
         }
+        catch {
 
+            showLoading(false);
+
+            openSnackbar({ msg: "Server off.", tp: "error"});
+        }
+        
     }
 
     function getRandomInt(min, max) {
@@ -253,14 +227,14 @@ export default function SigIn(){
     }
 
     return(
-        <div className="register-container" style={style.registerContainer}>
+        <div className="signin-container" style={style.registerContainer}>
 
             <div className="content-carousel" style={style.contentCarousel}>
-                <Carousel className="caurosel" style={style.slidesCarousel}  autoplay>
+                <Carousel className="caurosel" style={style.slidesCarousel} autoplay>
 
                     {
-                        slides.map((item) => (
-                            <div key={getRandomInt(0,100)} className="div">
+                        slides.map((item, index) => (
+                            <div key={getRandomInt(0, 100)} className="div">
                                 <img
                                     width={window.innerWidth <= tamMinMobile ? "300px" : {}}
                                     src={item.src}
@@ -269,9 +243,9 @@ export default function SigIn(){
 
                                 <section className="section" style={style.section}>
 
-                                    <h3 className="h3">{item.h3}</h3>
+                                    <h3 className="h3" style={style.p}>{item.h3}</h3>
 
-                                    <p className="p">{item.p}</p>
+                                    <p className="p" style={style.p}>{item.p}</p>
 
                                 </section>
                                 
@@ -281,34 +255,24 @@ export default function SigIn(){
                 </Carousel>
             </div>
 
-            <div className="content-signup" style={style.content}>
+            <div className="content-signin" style={style.content}>
                         
-                <h1>Invision</h1>
+                <h1 style={style.h1}>Invision</h1>
 
                 <div className="forms">
                     <section>
 
-                        <h2>Getting Started</h2>
+                        <h2>Welcome to Invision</h2>
 
                     </section>
 
-                    <form onSubmit={handleRegister}>
-
-                        <Input
-                            id="input-name"
-                            error={errorInput}
-                            type="text"
-                            label="Full Name"
-                            placeholder="Ex: Cristian Aragão"
-                            value={name}
-                            onChange={(e) => { setName(e.target.value); setErrorInput(""); }}
-                        />
+                    <form onSubmit={handleSignIn}>
 
                         <Input
                             id="input-email"
+                            label="Users name or Email"
                             error={errorInput}
                             type="email"
-                            label="Users name or Email"
                             placeholder="Ex: username@gmail.com"
                             value={email}
                             onChange={(e) => { setEmail(e.target.value); setErrorInput(""); }}
@@ -316,15 +280,17 @@ export default function SigIn(){
 
                         <Input
                             id="input-password"
+                            label="Password"
                             error={errorInput}
                             type="password"
-                            label="Password"
                             placeholder="Ex: username123"
                             value={password}
                             onChange={e => { setPassword(e.target.value); setErrorInput(""); }}
                         />
 
-                        <button className="button" type="submit">Sign Up</button>
+                        <Link href="" onClick={() => { history.push("/signin") }}>Forgot password?</Link>
+
+                        <button className="button" type="submit">Sign In</button>
 
                     </form>
 
@@ -341,17 +307,15 @@ export default function SigIn(){
                     <GoogleLogin
                         clientId="444381768609-3ekmns3b748g3ok6msul3b3b00enfk8k.apps.googleusercontent.com"
                         className="btnGoogle"
-                        onSuccess={handleRegisterGoogle}
-                        onFailure={handleRegisterGoogle}
+                        onSuccess={handleSignInGoogle}
+                        onFailure={handleSignInGoogle}
                         cookiePolicy={"single_host_origin"}
-                        children={<p>Sign up with Google</p>}
+                        children={<p>Sign in with Google</p>}
                     />
 
-                    <p className="p">By signing up, you agree to Invision <Link href="" onClick={linkToSignup}><u>Terms of Conditions</u></Link> and <Link href="" onClick={linkToSignup}><u>Privacy Policy</u></Link></p>
-
-                    <p><Link href="" onClick={linkToSign}>Already on <b>Invision</b>? <u>Log in</u></Link></p>
+                    <p><Link href="" onClick={() => { history.push("/signup") }}>New <b>Invision</b>? <u>Create Account</u></Link></p>
                 </div>
             </div>
         </div>
     );
-}
+};

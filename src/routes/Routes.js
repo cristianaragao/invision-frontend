@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SigIn from '../invision/SignIn';
-import SignUp from '../invision/SignUp';
-import Home from '../invision/Home';
-import NotFound from '../invision/NotFound';
+import SigIn from '../page/signin';
+import SignUp from '../page/signup';
+import Home from '../page/home';
+import NotFound from '../page/notfound';
 
 import PrivateRoute from './PrivateRoute';
 
-export const URL_BASE = "/invision";
+const URL_BASE = "/page";
 
 const Routes = () => {
 
