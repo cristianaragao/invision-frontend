@@ -39,4 +39,4 @@ Open project in [http://localhost:3000/signin](http://localhost:3000/signin) to 
 
 <hr>
 
-# Thanks for visiting! :grin:
+# Thanks for visiting! :smile:
