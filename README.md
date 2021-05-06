@@ -16,9 +16,15 @@ To view the Back-End code visit: [https://github.com/cristianaragao/invision-bac
 
 * **Node e NPM** install on the site: [https://nodejs.org/en/](https://nodejs.org/en/)
 
-In folder root:
+Faça um Download Zip do projeto ou rode:
 
-Install all frontend dependencies
+```bash
+git clone https://github.com/cristianaragao/invision-frontend.git
+```
+
+In folder root `/invision-frontend`:
+
+Install all frontend dependencies:
 
 ```bash
 npm install
