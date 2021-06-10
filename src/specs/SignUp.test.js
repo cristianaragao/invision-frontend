@@ -2,7 +2,7 @@ import React from "react";
 
 import {render} from "@testing-library/react";
 
-import SignUp from "../components/SignUp/";
+import SignUp from "../signup";
 
 
 test("Rendering Name field correctly.", () => {
