@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
-import { AuthService } from "../../routes/AuthService";
+import { AuthService } from "../routes/AuthService";
 
 const style = {
     background: {
