@@ -6,8 +6,8 @@ import Divider from "@material-ui/core/Divider";
 import Link from '@material-ui/core/Link';
 
 /* STYLES CSS */
-import { Input } from "../common";
-import { stylesDesktop, stylesMobile } from "../common/styles.css";
+import { Input } from "../../common";
+import { stylesDesktop, stylesMobile } from "../../common/styles.css";
 import "./style.css";
 
 /* POPUP GOOGLE */
@@ -17,16 +17,16 @@ import "antd/dist/antd.css";
 import { Carousel } from "antd";
 
 /* API BACKEND */
-import api from "../services/api";
+import api from "../../services/api";
 
 /* ASSETS */
-import imgData from "../assets/Data.png";
+import imgData from "../../assets/Data.png";
 
 /* MESSAGES */
-import { openSnackbar } from "../common/Notifier";
+import { openSnackbar } from "../../common/Notifier";
 
 /* LOADING */
-import { showLoading } from "../common/Loading";
+import { showLoading } from "../../common/Loading";
 
 const tamMinDesktop = 1300;
 const tamMinMobile = 500;

@@ -10,30 +10,30 @@ import { Carousel } from "antd";
 import Link from '@material-ui/core/Link';
 
 /* Authenticator */
-import { AuthService } from "../routes/AuthService";
+import { AuthService } from "../../routes/AuthService";
 
 /* MATERIAL UI/CORE/ */
 import Divider from "@material-ui/core/Divider";
 
 /* STYLES CSS */
-import { Input } from "../common";
-import { stylesDesktop, stylesMobile } from "../common/styles.css";
+import { Input } from "../../common";
+import { stylesDesktop, stylesMobile } from "../../common/styles.css";
 import "./style.css";
 
 /* API BACKEND */
-import api from "../services/api";
+import api from "../../services/api";
 
 /* POPUP GOOGLE */
 import { GoogleLogin } from "react-google-login";
 
 /* ASSETS */
-import imgData from "../assets/Data.png";
+import imgData from "../../assets/Data.png";
 
 /* MESSAGES */
-import { openSnackbar } from "../common/Notifier";
+import { openSnackbar } from "../../common/Notifier";
 
 /* LOADING */
-import { showLoading } from "../common/Loading";
+import { showLoading } from "../../common/Loading";
 
 const tamMinDesktop = 1300;
 const tamMinMobile = 500;
