@@ -2,7 +2,7 @@ import React from "react";
 
 import { render } from "@testing-library/react";
 
-import SignIn from "../signin";
+import SignIn from "../components/signin";
 
 test("Rendering Email field correctly.", () => {
     const { queryByLabelText, queryAllByPlaceholderText} = render(<SignIn />)

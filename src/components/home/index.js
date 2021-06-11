@@ -2,7 +2,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { openSnackbar } from "../common/Notifier";
+import { openSnackbar } from "../../common/Notifier";
 
 /* MATERIAL UI/CORE/ */
 import AppBar from "@material-ui/core/AppBar";
@@ -13,7 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
 /* Authenticator */
-import { AuthService } from "../routes/AuthService";
+import { AuthService } from "../../routes/AuthService";
 
 import "./style.css";
 

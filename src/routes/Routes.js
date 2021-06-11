@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SigIn from '../signin';
-import SignUp from '../signup';
-import Home from '../home';
-import NotFound from '../notfound';
+import SigIn from '../components/signin';
+import SignUp from '../components/signup';
+import Home from '../components/home';
+import NotFound from '../components/notfound';
 
 import PrivateRoute from './PrivateRoute';
 
