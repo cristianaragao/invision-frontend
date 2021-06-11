@@ -54,8 +54,10 @@ export default function NotFound() {
     useEffect(() => {
         const timer = setTimeout(() => {
 
+            console.log('history: ', history);
+
             if(AuthService.logged) history.push("/home");
-            else history.push("/signin");
+            else history.push("/home");
             
         }, 2000);
         return () => clearTimeout(timer);
