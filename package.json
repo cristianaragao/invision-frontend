@@ -1,6 +1,9 @@
 {
   "name": "invision",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "homepage": "https://cristianaragao.github.io/invision-frontend",
   "private": true,
   "dependencies": {
