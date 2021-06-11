@@ -4,7 +4,6 @@
   "engines": {
     "node": "14.16.0"
   },
-  "homepage": "https://cristianaragao.github.io/invision-frontend",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.6.0",
